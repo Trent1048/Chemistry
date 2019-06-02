@@ -86,6 +86,44 @@ public class PeriodicTable {
 		elements.put("Pt", new Element(78, 195.08, "Platinum", new int[]{2, 4}, "Pt"));
 		elements.put("Au", new Element(79, 196.96654, "Gold", new int[]{1, 3}, "Au"));
 		elements.put("Hg", new Element(80, 200.59, "Mercury", new int[]{1, 2}, "Hg"));
+		elements.put("Tl", new Element(81, 204.3833, "Thallium", new int[]{1, 3}, "Tl"));
+		elements.put("Pb", new Element(82, 207.2, "Lead", new int[]{2, 4}, "Pb"));
+		elements.put("Bi", new Element(83, 208.98037, "Bismuth", new int[]{3, 5}, "Bi"));
+		elements.put("Po", new Element(84, 208.9824, "Polonium", new int[]{2, 4}, "Po"));
+		elements.put("At", new Element(85, 209.9871, "Astatine", new int[]{1, -1, 5, -5, 7, -7}, "At"));
+		elements.put("Rn", new Element(86, 222.0176, "Radon", new int[]{0}, "Rn"));
+		elements.put("Fr", new Element(87, 223.0197, "Francium", new int[]{1}, "Fr"));
+		elements.put("Ra", new Element(88, 226.0254, "Radium", new int[]{2}, "Ra"));
+		elements.put("Ac", new Element(89, 227.0278, "Actinium", new int[]{3}, "Ac"));
+		elements.put("Th", new Element(90, 232.0381, "Thorium", new int[]{4}, "Th"));
+		elements.put("Pa", new Element(91, 231.03588, "Protactinium", new int[]{4, 5}, "Pa"));
+		elements.put("U", new Element(92, 238.0289, "Uranium", new int[]{3, 4, 5, 6}, "U"));
+		elements.put("Np", new Element(93, 237.0428, "Neptunium", new int[]{3, 4, 5, 6}, "Np"));
+		elements.put("Pu", new Element(94, 244.0642, "Plutonium", new int[]{3, 4, 5, 6}, "Pu"));
+		elements.put("Am", new Element(95, 243.0614, "Americium", new int[]{3, 4, 5, 6}, "Am"));
+		elements.put("Cm", new Element(96, 247.0703, "Curium", new int[]{3}, "Cm"));
+		elements.put("Bk", new Element(97, 247.0703, "Berkelium", new int[]{3, 4}, "Bk"));
+		elements.put("Cf", new Element(98, 251.0796, "Californium", new int[]{3}, "Cf"));
+		elements.put("Es", new Element(99, 252.083, "Einsteinium", new int[]{3}, "Es"));
+		elements.put("Fm", new Element(100, 257.0951, "Fermium", new int[]{3}, "Fm"));
+		elements.put("Md", new Element(101, 258.1, "Mendelevium", new int[]{2, 3}, "Md"));
+		elements.put("No", new Element(102, 259.1009, "Nobelium", new int[]{2, 3}, "No"));
+		elements.put("Lr", new Element(103, 262.11, "Lawrencium", new int[]{3}, "Lr"));
+		elements.put("Rf", new Element(104, 257.12, "Rutherfordium", new int[0], "Rf"));
+		elements.put("Db", new Element(105, 270.13, "Dubnium", new int[0], "Db"));
+		elements.put("Sg", new Element(106, 269.13, "Seaborgium", new int[0], "Sg"));
+		elements.put("Bh", new Element(107, 260.13, "Bohrium", new int[0], "Bh"));
+		elements.put("Hs", new Element(108, 269.13, "Hassium", new int[0], "Hs"));
+		elements.put("Mt", new Element(109, 278.16, "Meitnerium", new int[0], "Mt"));
+		elements.put("Ds", new Element(110, 281.17, "Darmstadtium", new int[0], "Ds"));
+		elements.put("Rg", new Element(111, 281.17, "Roentgenium", new int[0], "Rg"));
+		elements.put("Cm", new Element(112, 285.17, "Copernicium", new int[0], "Cm"));
+		elements.put("Nh", new Element(113, 286.18, "Nihonium", new int[0], "Nh"));
+		elements.put("Fl", new Element(114, 289.19, "Flerovium", new int[0], "Fl"));
+		elements.put("Mc", new Element(115, 289.2, "Moscovium", new int[0], "Mc"));
+		elements.put("Lv", new Element(116, 293.2, "Livermorium", new int[0], "Lv"));
+		elements.put("Ts", new Element(117, 293.21, "Tennessine", new int[0], "Ts"));
+		elements.put("Og", new Element(118, 294.21, "Oganesson", new int[0], "Og"));
 	}
 	
 	public static void main(String[] args){
