@@ -6,6 +6,7 @@ public class Element {
 	private String name;
 	private int[] charges;
 	private String symbol;
+	private boolean isMetal;
 	
 	//for groups VA, VIA, and VIIA with weird charges
 	private int formalCharge;
@@ -17,7 +18,22 @@ public class Element {
 		this.name = name;
 		this.charges = charges;
 		this.symbol = symbol;
-		this.hasFormalCharge = false;
+		hasFormalCharge = false;
+		if(charges[0] == 0) {
+			isMetal = false;
+		} else {
+			isMetal = true;
+		}
+	}
+	
+	public Element(int atomicNum, double atomicWeight, String name, int[] charges, String symbol, boolean isMetal){
+		this.atomicNum = atomicNum;
+		this.atomicWeight = atomicWeight;
+		this.name = name;
+		this.charges = charges;
+		this.symbol = symbol;
+		hasFormalCharge = false;
+		this.isMetal = isMetal;
 	}
 	
 	public Element(int atomicNum, double atomicWeight, String name, int[] charges, int formalCharge, String symbol){
@@ -28,6 +44,7 @@ public class Element {
 		this.symbol = symbol;
 		this.hasFormalCharge = true;
 		this.formalCharge = formalCharge;
+		isMetal = false;
 	}
 	
 	//getters
@@ -78,5 +95,9 @@ public class Element {
 	
 	public boolean hasFormalCharge(){
 		return hasFormalCharge;
+	}
+	
+	public boolean isMetal() {
+		return isMetal;
 	}
 }
