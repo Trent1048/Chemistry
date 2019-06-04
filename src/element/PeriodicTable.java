@@ -144,7 +144,9 @@ public class PeriodicTable {
 		LinkedHashMap<Element, Integer> nitrateVals = new LinkedHashMap<Element, Integer>();
 		nitrateVals.put(PeriodicTable.elements.get("N"), 1);
 		nitrateVals.put(PeriodicTable.elements.get("O"), 3);
-		Ion nitrate = new Ion(nitrateVals, "nitrate");
+		Ion nitrate = new Ion(nitrateVals, "nitrate", -1);
 		System.out.println(nitrate.getSymbol());
+		Ion iron3 = new Ion(PeriodicTable.elements.get("Fe"), 3);
+		System.out.println(iron3.getName());
 	}
 }

@@ -5,7 +5,7 @@ import element.Element;
 
 public class CovalentCompound extends Compound {
 	private HashMap<Element, Integer> elements;
-	private static String[] PREFIXES = {"mono", "di", "tri", "tetra", "penta", "hexa", "hepta", "octo", "nona", "deca", "undeca", "dodeca"};
+	private static final String[] PREFIXES = {"mono", "di", "tri", "tetra", "penta", "hexa", "hepta", "octo", "nona", "deca", "undeca", "dodeca"};
 
 	public CovalentCompound(Element e1, int e1Amount, Element e2, int e2Amount){
 		if(e1Amount > 12 || e2Amount > 12){

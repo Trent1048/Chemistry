@@ -5,32 +5,60 @@ import java.util.LinkedHashMap;
 import element.Element;
 
 public class Ion {
+	private static final String[] ROMAN_NUMERALS = {"I", "II", "III", "IV", "V", "VI", "VII"};
 	private LinkedHashMap<Element, Integer> elements;
 	private double atomicWeight;
 	private String name;
 	private String symbol;
 	private int charge;
 	
-	public Ion(Element element, int amount){
+	//for monotomic ions which are non-metal
+	public Ion(Element element){
 		elements = new LinkedHashMap<Element, Integer>();
-		if(element.isMetal()){
-			throw new IllegalArgumentException("A monotomic ion must be a nonmetal");
-		}
-		elements.put(element, new Integer(amount));
-		symbol = element.getSymbol();
-		name = element.getName();
-		atomicWeight = element.getAtomicWeight() * amount;
-		if(element.hasFormalCharge()){
-			charge = element.getFormalCharge();
+		if(!element.isMetal()){
+			elements.put(element, new Integer(1));
+			symbol = element.getSymbol();
+			name = element.getName();
+			atomicWeight = element.getAtomicWeight();
+			//calculating the charge
+			if(element.hasFormalCharge()){
+				charge = element.getFormalCharge();
+			} else if(element.hasOneCharge()){
+				charge = element.getCharges()[0];
+			} else {
+				charge = -4;//carbon is the only other non-metal
+			}
 		} else {
-			charge = -4;//carbon is the only other non-metal (that is negatively charged)
+			throw new IllegalArgumentException("Use the Ion(Element element, int charge) constructor for metal monotomic ions");
 		}
 	}
 	
-	public Ion(LinkedHashMap<Element, Integer> ionsElements, String name){
+	//for monotomic ions which are metals
+	public Ion(Element element, int charge){
+		elements = new LinkedHashMap<Element, Integer>();
+		if(element.isMetal()){
+			elements.put(element, new Integer(1));
+			symbol = element.getSymbol();
+			name = element.getName();
+			if(!element.hasOneCharge()){
+				name += " (" + ROMAN_NUMERALS[charge - 1] + ") ";
+			}
+			if(element.hasCharge(charge)){
+				this.charge = charge;
+			} else {
+				throw new IllegalArgumentException("Invalid charge");
+			}
+		} else {
+			throw new IllegalArgumentException("Use the Ion(Element element) constructor for non-metal monotomic ions");
+		}
+	}
+	
+	//for polyatomic ions
+	public Ion(LinkedHashMap<Element, Integer> ionsElements, String name, int charge){
 		elements = new LinkedHashMap<Element, Integer>();
 		elements = ionsElements;
 		this.name = name;
+		this.charge = charge;
 		
 		//calculating atomic weight and symbol
 		atomicWeight = 0;
