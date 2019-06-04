@@ -18,7 +18,7 @@ public class Ion {
 		if(!element.isMetal()){
 			elements.put(element, new Integer(1));
 			symbol = element.getSymbol();
-			name = element.getName();
+			name = element.getIonName();
 			atomicWeight = element.getAtomicWeight();
 			//calculating the charge
 			if(element.hasFormalCharge()){
@@ -39,7 +39,7 @@ public class Ion {
 		if(element.isMetal()){
 			elements.put(element, new Integer(1));
 			symbol = element.getSymbol();
-			name = element.getName();
+			name = element.getIonName();
 			if(!element.hasOneCharge()){
 				name += " (" + ROMAN_NUMERALS[charge - 1] + ") ";
 			}

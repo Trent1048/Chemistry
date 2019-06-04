@@ -14,12 +14,16 @@ public abstract class Compound {
 		return symbol;
 	}
 	
+	public double getAtomicWeight(){
+		return atomicWeight;
+	}
+	
 	//default overrides
 	public String toString(){
 		return symbol;
 	}
 	
-	public double getAtomicWeight(){
-		return atomicWeight;
+	public boolean equals(Compound other){
+		return name == other.getName();
 	}
 }

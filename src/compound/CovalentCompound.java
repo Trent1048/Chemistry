@@ -5,7 +5,7 @@ import element.Element;
 
 public class CovalentCompound extends Compound {
 	private HashMap<Element, Integer> elements;
-	private static final String[] PREFIXES = {"mono", "di", "tri", "tetra", "penta", "hexa", "hepta", "octo", "nona", "deca", "undeca", "dodeca"};
+	private static final String[] PREFIXES = {"Mono", "Di", "Tri", "Tetra", "Penta", "Hexa", "Hepta", "Octo", "Nona", "Deca", "Undeca", "Dodeca"};
 
 	public CovalentCompound(Element e1, int e1Amount, Element e2, int e2Amount){
 		if(e1Amount > 12 || e2Amount > 12){
@@ -42,5 +42,6 @@ public class CovalentCompound extends Compound {
 			int oIndex = name.lastIndexOf("o");
 			name = name.substring(0, oIndex) + name.substring(oIndex + 1);
 		}
+		name = name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
 }
