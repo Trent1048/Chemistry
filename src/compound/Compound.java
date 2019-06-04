@@ -3,6 +3,7 @@ package compound;
 public abstract class Compound {
 	protected String name;
 	protected String symbol;
+	protected double atomicWeight;
 	
 	//getters
 	public String getName(){
@@ -16,5 +17,9 @@ public abstract class Compound {
 	//default overrides
 	public String toString(){
 		return symbol;
+	}
+	
+	public double getAtomicWeight(){
+		return atomicWeight;
 	}
 }

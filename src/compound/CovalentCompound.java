@@ -1,11 +1,9 @@
 package compound;
 
 import java.util.HashMap;
-
 import element.Element;
 
 public class CovalentCompound extends Compound {
-	
 	private HashMap<Element, Integer> elements;
 	private static String[] PREFIXES = {"mono", "di", "tri", "tetra", "penta", "hexa", "hepta", "octo", "nona", "deca", "undeca", "dodeca"};
 
@@ -19,6 +17,8 @@ public class CovalentCompound extends Compound {
 		elements = new HashMap<Element, Integer>();
 		elements.put(e1, new Integer(e1Amount));
 		elements.put(e2, new Integer(e2Amount));
+		
+		atomicWeight = e1.getAtomicWeight() * e1Amount + e2.getAtomicWeight() * e2Amount;
 		
 		//generating symbol
 		symbol = "";

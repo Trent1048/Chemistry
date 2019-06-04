@@ -1,13 +1,16 @@
 package element;
 
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import compound.CovalentCompound;
+import compound.Ion;
 
 public class PeriodicTable {
-	public static Hashtable<String, Element> elements;
+	public static HashMap<String, Element> elements;
 	
 	static {
-		elements = new Hashtable<String, Element>();
+		elements = new HashMap<String, Element>();
 		elements.put("H", new Element(1, 1.00794, "Hydrogen", new int[]{1}, "H", false));
 		elements.put("He", new Element(2, 4.002602, "Helium", new int[]{0}, "He"));
 		elements.put("Li", new Element(3, 6.941, "Lithium", new int[]{1}, "Li"));
@@ -137,6 +140,11 @@ public class PeriodicTable {
 		System.out.println(water.getSymbol());
 		System.out.println(water.getName());
 		CovalentCompound XeF4 = new CovalentCompound(PeriodicTable.elements.get("Xe"), 1, PeriodicTable.elements.get("F"), 4);
-		System.out.println(XeF4.getName());
+		System.out.println(XeF4.getAtomicWeight());
+		LinkedHashMap<Element, Integer> nitrateVals = new LinkedHashMap<Element, Integer>();
+		nitrateVals.put(PeriodicTable.elements.get("N"), 1);
+		nitrateVals.put(PeriodicTable.elements.get("O"), 3);
+		Ion nitrate = new Ion(nitrateVals, "nitrate");
+		System.out.println(nitrate.getSymbol());
 	}
 }
