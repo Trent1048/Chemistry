@@ -132,27 +132,31 @@ public class PeriodicTable {
 		elements.put("Og", new Element(118, 294.21, "Oganesson", new int[0], "Og"));
 	}
 	
+	public static Element get(String elementName){
+		return elements.get(elementName);
+	}
+	
 	public static void main(String[] args){
 		//test elements
-		System.out.println(PeriodicTable.elements.get("H").getName());
-		System.out.println(PeriodicTable.elements.get("Pb"));
-		System.out.println(PeriodicTable.elements.get("Mc").getAtomicNum());
-		System.out.println(PeriodicTable.elements.get("N").getFormalCharge());
-		//test covalent comopounds
-		CovalentCompound water = new CovalentCompound(PeriodicTable.elements.get("H"), 2, PeriodicTable.elements.get("O"), 1);
+		System.out.println(PeriodicTable.get("H").getName());
+		System.out.println(PeriodicTable.get("Pb"));
+		System.out.println(PeriodicTable.get("Mc").getAtomicNum());
+		System.out.println(PeriodicTable.get("N").getFormalCharge());
+		//test covalent compounds
+		CovalentCompound water = new CovalentCompound(PeriodicTable.get("H"), 2, PeriodicTable.get("O"), 1);
 		System.out.println(water.getSymbol());
 		System.out.println(water.getName());
-		CovalentCompound XeF4 = new CovalentCompound(PeriodicTable.elements.get("Xe"), 1, PeriodicTable.elements.get("F"), 4);
+		CovalentCompound XeF4 = new CovalentCompound(PeriodicTable.get("Xe"), 1, PeriodicTable.get("F"), 4);
 		//test ions
 		System.out.println(XeF4.getAtomicWeight());
 		LinkedHashMap<Element, Integer> nitrateVals = new LinkedHashMap<Element, Integer>();
-		nitrateVals.put(PeriodicTable.elements.get("N"), 1);
-		nitrateVals.put(PeriodicTable.elements.get("O"), 3);
+		nitrateVals.put(PeriodicTable.get("N"), 1);
+		nitrateVals.put(PeriodicTable.get("O"), 3);
 		Ion nitrate = new Ion(nitrateVals, "nitrate", -1);
 		System.out.println(nitrate.getSymbol());
 		//test ionic compounds
-		Ion iron3 = new Ion(PeriodicTable.elements.get("Fe"), 3);
-		Ion oMinusTwo = new Ion(PeriodicTable.elements.get("O"));
+		Ion iron3 = new Ion(PeriodicTable.get("Fe"), 3);
+		Ion oMinusTwo = new Ion(PeriodicTable.get("O"));
 		IonicCompound Fe2O3 = new IonicCompound(iron3, 2, oMinusTwo, 3);
 		System.out.println(Fe2O3);
 		System.out.println(Fe2O3.getName());

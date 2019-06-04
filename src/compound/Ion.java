@@ -12,7 +12,7 @@ public class Ion {
 	private String symbol;
 	private int charge;
 	
-	//for monotomic ions which are non-metal
+	//for monatomic ions which are non-metal
 	public Ion(Element element){
 		elements = new LinkedHashMap<Element, Integer>();
 		if(!element.isMetal()){
@@ -29,11 +29,11 @@ public class Ion {
 				charge = -4;//carbon is the only other non-metal
 			}
 		} else {
-			throw new IllegalArgumentException("Use the Ion(Element element, int charge) constructor for metal monotomic ions");
+			throw new IllegalArgumentException("Use the Ion(Element element, int charge) constructor for metal monatomic ions");
 		}
 	}
 	
-	//for monotomic ions which are metals
+	//for monatomic ions which are metals
 	public Ion(Element element, int charge){
 		elements = new LinkedHashMap<Element, Integer>();
 		if(element.isMetal()){
@@ -49,7 +49,7 @@ public class Ion {
 				throw new IllegalArgumentException("Invalid charge");
 			}
 		} else {
-			throw new IllegalArgumentException("Use the Ion(Element element) constructor for non-metal monotomic ions");
+			throw new IllegalArgumentException("Use the Ion(Element element) constructor for non-metal monatomic ions");
 		}
 	}
 	
