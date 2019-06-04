@@ -1,5 +1,7 @@
 package element;
-import java.util.*;
+
+import java.util.Hashtable;
+import compound.CovalentCompound;
 
 public class PeriodicTable {
 	public static Hashtable<String, Element> elements;
@@ -128,5 +130,13 @@ public class PeriodicTable {
 	
 	public static void main(String[] args){
 		System.out.println(PeriodicTable.elements.get("H").getName());
+		System.out.println(PeriodicTable.elements.get("Pb"));
+		System.out.println(PeriodicTable.elements.get("Mc").getAtomicNum());
+		System.out.println(PeriodicTable.elements.get("N").getFormalCharge());
+		CovalentCompound water = new CovalentCompound(PeriodicTable.elements.get("H"), 2, PeriodicTable.elements.get("O"), 1);
+		System.out.println(water.getSymbol());
+		System.out.println(water.getName());
+		CovalentCompound XeF4 = new CovalentCompound(PeriodicTable.elements.get("Xe"), 1, PeriodicTable.elements.get("F"), 4);
+		System.out.println(XeF4.getName());
 	}
 }

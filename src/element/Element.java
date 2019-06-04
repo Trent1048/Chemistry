@@ -7,6 +7,7 @@ public class Element {
 	private int[] charges;
 	private String symbol;
 	private boolean isMetal;
+	private String ionName;
 	
 	//for groups VA, VIA, and VIIA with weird charges
 	private int formalCharge;
@@ -19,11 +20,12 @@ public class Element {
 		this.charges = charges;
 		this.symbol = symbol;
 		hasFormalCharge = false;
-		if(charges[0] == 0) {
+		if(charges.length > 0 && charges[0] == 0) {
 			isMetal = false;
 		} else {
 			isMetal = true;
 		}
+		generateIonName();
 	}
 	
 	public Element(int atomicNum, double atomicWeight, String name, int[] charges, String symbol, boolean isMetal){
@@ -34,6 +36,7 @@ public class Element {
 		this.symbol = symbol;
 		hasFormalCharge = false;
 		this.isMetal = isMetal;
+		generateIonName();
 	}
 	
 	public Element(int atomicNum, double atomicWeight, String name, int[] charges, int formalCharge, String symbol){
@@ -45,6 +48,28 @@ public class Element {
 		this.hasFormalCharge = true;
 		this.formalCharge = formalCharge;
 		isMetal = false;
+		generateIonName();
+	}
+	
+	//helper methods
+	private void generateIonName(){
+		if(isMetal || charges[0] == 0){
+			ionName = name;
+		} else if(symbol == "H"){
+			ionName = "Hydride";
+		} else if(symbol == "P"){
+			ionName = "Phosphide";
+		} else if(symbol == "S"){
+			ionName = "Sulfide";
+		} else if(symbol == "C"){
+			ionName = "Carbide";
+		} else if(symbol == "Se"){
+			ionName = "Selenide";
+		} else if(name.endsWith("gen")){
+			ionName = name.substring(0, name.indexOf("gen") - 1) + "ide";
+		} else {
+			ionName = name.substring(0, name.indexOf("ine")) + "ide";
+		}
 	}
 	
 	//getters
@@ -74,9 +99,13 @@ public class Element {
 	
 	public int getFormalCharge(){
 		if(!hasFormalCharge){
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException(name + " does not have a formal charge");
 		}
 		return formalCharge;
+	}
+	
+	public String getIonName(){
+		return ionName;
 	}
 	
 	//checkers
@@ -99,5 +128,14 @@ public class Element {
 	
 	public boolean isMetal() {
 		return isMetal;
+	}
+	
+	//default overrides
+	public String toString(){
+		return symbol;
+	}
+	
+	public boolean equals(Element other){
+		return other.getName() == name;
 	}
 }
