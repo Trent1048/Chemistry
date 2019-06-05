@@ -7,12 +7,44 @@ import element.Element;
 public class Equation {
 	private HashMap<Compound, Integer> reactants;
 	private HashMap<Compound, Integer> products;
+	private String asString;
 	
 	public Equation(HashMap<Compound, Integer> reactants, HashMap<Compound, Integer> products){
 		this.reactants = reactants;
 		this.products = products;
 		if(!isBalanced()){
 			throw new IllegalArgumentException("Equasion is not balanced");
+		}
+		calcString();		
+	}
+	
+	//figures out what to print out for toString()
+	private void calcString(){
+		asString = "";
+		int compoundsRemaining = reactants.size();
+		for(Compound compound : reactants.keySet()){
+			compoundsRemaining--;
+			int amount = reactants.get(compound).intValue();
+			if(amount > 1){
+				asString += "" + amount;
+			}
+			asString += compound.toString() + " ";
+			if(compoundsRemaining > 0){
+				asString += "+ ";
+			}
+		}
+		asString += "--> ";
+		compoundsRemaining = products.size();
+		for(Compound compound : products.keySet()){
+			compoundsRemaining--;
+			int amount = products.get(compound).intValue();
+			if(amount > 1){
+				asString += "" + amount;
+			}
+			asString += compound.toString();
+			if(compoundsRemaining > 0){
+				asString += " + ";
+			}
 		}
 	}
 	
@@ -44,5 +76,9 @@ public class Equation {
 			}
 		}
 		return reactantsElements.equals(productsElements);
+	}
+	
+	public String toString(){
+		return asString;
 	}
 }
