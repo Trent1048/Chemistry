@@ -25,9 +25,9 @@ public class Equation {
 			HashMap<Element, Integer> compoundsElements = compound.getElements();
 			for(Element element : compoundsElements.keySet()){
 				if(reactantsElements.containsKey(element)){
-					reactantsElements.replace(element, new Integer(compoundsElements.get(element).intValue() + reactantsElements.get(element).intValue()));
+					reactantsElements.replace(element, new Integer(compoundsElements.get(element).intValue() * reactants.get(compound).intValue() + reactantsElements.get(element).intValue()));
 				} else {
-					reactantsElements.put(element, compoundsElements.get(element));
+					reactantsElements.put(element, new Integer(compoundsElements.get(element).intValue() * reactants.get(compound).intValue()) );
 				}
 			}
 		}
@@ -37,13 +37,12 @@ public class Equation {
 			HashMap<Element, Integer> compoundsElements = compound.getElements();
 			for(Element element : compoundsElements.keySet()){
 				if(productsElements.containsKey(element)){
-					productsElements.replace(element, new Integer(compoundsElements.get(element).intValue() + productsElements.get(element).intValue()));
+					productsElements.replace(element, new Integer(compoundsElements.get(element).intValue() * products.get(compound).intValue() + productsElements.get(element).intValue()));
 				} else {
-					productsElements.put(element, compoundsElements.get(element));
+					productsElements.put(element, new Integer(compoundsElements.get(element).intValue() * products.get(compound).intValue()));
 				}
 			}
 		}
-		
 		return reactantsElements.equals(productsElements);
 	}
 }

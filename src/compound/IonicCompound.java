@@ -53,9 +53,9 @@ public class IonicCompound extends Compound {
 			HashMap<Element, Integer> ionsElements = ion.getElements();
 			for(Element element : ionsElements.keySet()){
 				if(!elements.containsKey(element)){
-					elements.put(element, ionsElements.get(element));
+					elements.put(element, new Integer(ionsElements.get(element).intValue() * ions.get(ion).intValue()));
 				} else {
-					elements.replace(element, new Integer(elements.get(element).intValue() + ionsElements.get(element).intValue()));
+					elements.replace(element, new Integer(elements.get(element).intValue() + ionsElements.get(element).intValue() * ions.get(ion).intValue()));
 				}
 			}
 		}

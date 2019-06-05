@@ -7,6 +7,7 @@ import compound.Compound;
 import compound.CovalentCompound;
 import compound.Ion;
 import compound.IonicCompound;
+import stoichiometry.Equation;
 
 public class PeriodicTable {
 	public static HashMap<String, Element> elements;
@@ -168,9 +169,15 @@ public class PeriodicTable {
 		reactants.put(water, 3);
 		Ion H = new Ion(PeriodicTable.get("H"));
 		Ion BF4 = new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("F"), 4, "Tetrafluoroborate", -1);
-		Compound H3BO4 = new IonicCompound(new Ion(PeriodicTable.get("H")), 3, new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("O"), 3, "Borate", -3), 1);
+		Compound H3BO3 = new IonicCompound(H, 3, new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("O"), 3, "Borate", -3), 1);
+		System.out.println(H3BO3.getElements().toString());
 		Compound HBF4 = new IonicCompound(H, 1, BF4, 1);
+		HashMap<Compound, Integer> products = new HashMap<Compound, Integer>();
+		products.put(H3BO3, 1);
+		products.put(HBF4, 3); 
 		System.out.println(HBF4);
-		System.out.println(H3BO4.getName());
+		System.out.println(H3BO3.getName());
+		Equation testE = new Equation(reactants, products);
+		System.out.println(testE);
 	}
 }
