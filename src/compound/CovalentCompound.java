@@ -11,7 +11,7 @@ public class CovalentCompound extends Compound {
 		if(e1Amount > 12 || e2Amount > 12){
 			throw new IllegalArgumentException("Covalent compounds cannot have more than 12 of a single element in the bond");
 		} 
-		if(e1.isMetal() || e2.isMetal()){
+		if((e1.isMetal() && !e1.isMetalloid()) || (e2.isMetal() && !e2.isMetalloid())){
 			throw new IllegalArgumentException("Covalent compounds cannot contain metals");
 		}
 		elements = new HashMap<Element, Integer>();
@@ -43,5 +43,9 @@ public class CovalentCompound extends Compound {
 			name = name.substring(0, oIndex) + name.substring(oIndex + 1);
 		}
 		name = name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
+	
+	public HashMap<Element, Integer> getElements(){
+		return elements;
 	}
 }

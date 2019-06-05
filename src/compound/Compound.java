@@ -1,5 +1,8 @@
 package compound;
 
+import java.util.HashMap;
+import element.Element;
+
 public abstract class Compound {
 	protected String name;
 	protected String symbol;
@@ -17,6 +20,8 @@ public abstract class Compound {
 	public double getAtomicWeight(){
 		return atomicWeight;
 	}
+	
+	public abstract HashMap<Element, Integer> getElements();
 	
 	//default overrides
 	public String toString(){

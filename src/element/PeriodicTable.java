@@ -3,6 +3,7 @@ package element;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import compound.Compound;
 import compound.CovalentCompound;
 import compound.Ion;
 import compound.IonicCompound;
@@ -12,12 +13,12 @@ public class PeriodicTable {
 	
 	static {
 		elements = new HashMap<String, Element>();
-		elements.put("H", new Element(1, 1.00794, "Hydrogen", new int[]{1}, "H", false));
+		elements.put("H", new Element(1, 1.00794, "Hydrogen", new int[]{1}, "H", false, false));
 		elements.put("He", new Element(2, 4.002602, "Helium", new int[]{0}, "He"));
 		elements.put("Li", new Element(3, 6.941, "Lithium", new int[]{1}, "Li"));
 		elements.put("Be", new Element(4, 9.012182, "Beryllium", new int[]{2}, "Be"));
-		elements.put("B", new Element(5, 10.811, "Boron", new int[]{3}, "B"));
-		elements.put("C", new Element(6, 12.011, "Carbon", new int[]{2, 4, -4}, "C", false));
+		elements.put("B", new Element(5, 10.811, "Boron", new int[]{3}, "B", true, true));
+		elements.put("C", new Element(6, 12.011, "Carbon", new int[]{2, 4, -4}, "C", false, false));
 		elements.put("N", new Element(7, 14.00674, "Nitrogen", new int[]{-3, 2, 3, 4, -4, 5, -5}, -3, "N"));
 		elements.put("O", new Element(8, 15.9994, "Oxygen", new int[]{-2}, -2, "O"));
 		elements.put("F", new Element(9, 18.9984032, "Fluorine", new int[]{-1}, -1, "F"));
@@ -25,7 +26,7 @@ public class PeriodicTable {
 		elements.put("Na", new Element(11, 22.989768, "Sodium", new int[]{1}, "Na"));
 		elements.put("Mg", new Element(12, 24.3050, "Magnesium", new int[]{2}, "Mg"));
 		elements.put("Al", new Element(13, 26.981539, "Alumininum", new int[]{3}, "Al"));
-		elements.put("Si", new Element(14, 28.0855, "Silicon", new int[]{4}, "Si"));
+		elements.put("Si", new Element(14, 28.0855, "Silicon", new int[]{4}, "Si", true, true));
 		elements.put("P", new Element(15, 30.973762, "Phosphorus", new int[]{-3, 3, -4, 4, -5, 5}, -3, "P"));
 		elements.put("S", new Element(16, 32.066, "Sulfur", new int[]{-2, 2, -4, 4, -6, 6}, -2, "S"));
 		elements.put("Cl", new Element(17, 35.4527, "Chlorine", new int[]{-1, 1, -3, 3, -5, 5, -7, 7}, -1, "Cl"));
@@ -43,8 +44,8 @@ public class PeriodicTable {
 		elements.put("Cu", new Element(29, 63.546, "Copper", new int[]{1, 2}, "Cu"));
 		elements.put("Zn", new Element(30, 65.39, "Zinc", new int[]{2}, "Zn"));
 		elements.put("Ga", new Element(31, 69.723, "Gallium", new int[]{3}, "Ga"));
-		elements.put("Ge", new Element(32, 72.61, "Germanium", new int[]{4}, "Ge"));
-		elements.put("As", new Element(33, 74.92159, "Arsenic", new int[]{-3, 3, -5, 5}, "As"));
+		elements.put("Ge", new Element(32, 72.61, "Germanium", new int[]{4}, "Ge", true, true));
+		elements.put("As", new Element(33, 74.92159, "Arsenic", new int[]{-3, 3, -5, 5}, "As", true, true));
 		elements.put("Se", new Element(34, 78.96, "Selenium", new int[]{-2, 4, 6}, -2, "Se"));
 		elements.put("Br", new Element(35, 79.904, "Bromine", new int[]{-1, 1, -5, 5}, -1, "Br"));
 		elements.put("Kr", new Element(36, 83.80, "Krypton", new int[]{0}, "Kr"));
@@ -62,8 +63,8 @@ public class PeriodicTable {
 		elements.put("Cd", new Element(48, 112.411, "Cadmium", new int[]{2}, "Cd"));
 		elements.put("In", new Element(49, 114.818, "Indium", new int[]{3}, "In"));
 		elements.put("Sn", new Element(50, 118.71, "Tin", new int[]{2, 4}, "Sn"));
-		elements.put("Sb", new Element(51, 121.757, "Antimony", new int[]{3, -3, 5, -5}, "Sb"));
-		elements.put("Te", new Element(52, 127.6, "Tellurium", new int[]{-2, 4, 6}, "Te"));
+		elements.put("Sb", new Element(51, 121.757, "Antimony", new int[]{3, -3, 5, -5}, "Sb", true, true));
+		elements.put("Te", new Element(52, 127.6, "Tellurium", new int[]{-2, 4, 6}, "Te", true, true));
 		elements.put("I", new Element(53, 126.90447, "Iodine", new int[]{-1, 1, -5, 5, -7, 7}, -1, "I"));
 		elements.put("Xe", new Element(54, 131.29, "Xenon", new int[]{0}, "Xe"));
 		elements.put("Cs", new Element(55, 132.90543, "Cesium", new int[]{1}, "Cs"));
@@ -96,7 +97,7 @@ public class PeriodicTable {
 		elements.put("Pb", new Element(82, 207.2, "Lead", new int[]{2, 4}, "Pb"));
 		elements.put("Bi", new Element(83, 208.98037, "Bismuth", new int[]{3, 5}, "Bi"));
 		elements.put("Po", new Element(84, 208.9824, "Polonium", new int[]{2, 4}, "Po"));
-		elements.put("At", new Element(85, 209.9871, "Astatine", new int[]{1, -1, 5, -5, 7, -7}, "At"));
+		elements.put("At", new Element(85, 209.9871, "Astatine", new int[]{1, -1, 5, -5, 7, -7}, "At", true, true));
 		elements.put("Rn", new Element(86, 222.0176, "Radon", new int[]{0}, "Rn"));
 		elements.put("Fr", new Element(87, 223.0197, "Francium", new int[]{1}, "Fr"));
 		elements.put("Ra", new Element(88, 226.0254, "Radium", new int[]{2}, "Ra"));
@@ -160,5 +161,16 @@ public class PeriodicTable {
 		IonicCompound Fe2O3 = new IonicCompound(iron3, 2, oMinusTwo, 3);
 		System.out.println(Fe2O3);
 		System.out.println(Fe2O3.getName());
+		//test equation
+		Compound BF3 = new CovalentCompound(PeriodicTable.get("B"), 1, PeriodicTable.get("F"), 3);
+		HashMap<Compound, Integer> reactants = new HashMap<Compound, Integer>();
+		reactants.put(BF3, 4);
+		reactants.put(water, 3);
+		Ion H = new Ion(PeriodicTable.get("H"));
+		Ion BF4 = new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("F"), 4, "Tetrafluoroborate", -1);
+		Compound H3BO4 = new IonicCompound(new Ion(PeriodicTable.get("H")), 3, new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("O"), 3, "Borate", -3), 1);
+		Compound HBF4 = new IonicCompound(H, 1, BF4, 1);
+		System.out.println(HBF4);
+		System.out.println(H3BO4.getName());
 	}
 }

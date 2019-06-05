@@ -7,6 +7,7 @@ public class Element {
 	private int[] charges;
 	private String symbol;
 	private boolean isMetal;
+	private boolean isMetalloid;
 	private String ionName;
 	
 	//for groups VA, VIA, and VIIA with weird charges
@@ -25,10 +26,11 @@ public class Element {
 		} else {
 			isMetal = true;
 		}
+		isMetalloid = false;
 		generateIonName();
 	}
 	
-	public Element(int atomicNum, double atomicWeight, String name, int[] charges, String symbol, boolean isMetal){
+	public Element(int atomicNum, double atomicWeight, String name, int[] charges, String symbol, boolean isMetal, boolean isMetalloid){
 		this.atomicNum = atomicNum;
 		this.atomicWeight = atomicWeight;
 		this.name = name;
@@ -36,6 +38,7 @@ public class Element {
 		this.symbol = symbol;
 		hasFormalCharge = false;
 		this.isMetal = isMetal;
+		this.isMetalloid = isMetalloid;
 		generateIonName();
 	}
 	
@@ -48,6 +51,7 @@ public class Element {
 		this.hasFormalCharge = true;
 		this.formalCharge = formalCharge;
 		isMetal = false;
+		isMetalloid = false;
 		generateIonName();
 	}
 	
@@ -128,6 +132,10 @@ public class Element {
 	
 	public boolean isMetal() {
 		return isMetal;
+	}
+	
+	public boolean isMetalloid(){
+		return isMetalloid;
 	}
 	
 	//default overrides

@@ -1,5 +1,6 @@
 package compound;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import element.Element;
@@ -19,6 +20,9 @@ public class Ion {
 			elements.put(element, new Integer(1));
 			symbol = element.getSymbol();
 			name = element.getIonName();
+			if(element.getSymbol().equals("H")){
+				name = element.getName();
+			}
 			atomicWeight = element.getAtomicWeight();
 			//calculating the charge
 			if(element.hasFormalCharge()){
@@ -33,7 +37,7 @@ public class Ion {
 		}
 	}
 	
-	//for monatomic ions which are metals
+	//for monatomic ions which are metals (or Hydrogen with a charge of -1, aka Hydride)
 	public Ion(Element element, int charge){
 		elements = new LinkedHashMap<Element, Integer>();
 		if(element.isMetal()){
@@ -45,6 +49,11 @@ public class Ion {
 			}
 			if(element.hasCharge(charge)){
 				this.charge = charge;
+			} else if(element.getSymbol().equals("H") && charge == -1){
+				elements.put(element, new Integer(1));
+				symbol = element.getSymbol();
+				name = element.getIonName();
+				this.charge = charge;
 			} else {
 				throw new IllegalArgumentException("Invalid charge");
 			}
@@ -53,9 +62,29 @@ public class Ion {
 		}
 	}
 	
-	//for polyatomic ions
-	public Ion(LinkedHashMap<Element, Integer> ionsElements, String name, int charge){
+	//for polyatomic ions with only 2 elements
+	public Ion(Element e1, int e1Amount, Element e2, int e2Amount, String name, int charge){
 		elements = new LinkedHashMap<Element, Integer>();
+		elements.put(e1, new Integer(e1Amount));
+		elements.put(e2, new Integer(e2Amount));
+		this.name = name;
+		this.charge = charge;
+		
+		//calculating atomic weight and symbol
+		atomicWeight = e1.getAtomicWeight() * e1Amount + e2.getAtomicWeight() * e2Amount;
+		symbol = "";
+		symbol += e1.getSymbol();
+		if(e1Amount > 1){
+			symbol += "" + e1Amount; 
+		}
+		symbol += e2.getSymbol();
+		if(e2Amount > 1){
+			symbol += "" + e2Amount;
+		}
+	}
+	
+	//for polyatomic ions with more than 2 elements
+	public Ion(LinkedHashMap<Element, Integer> ionsElements, String name, int charge){
 		elements = ionsElements;
 		this.name = name;
 		this.charge = charge;
@@ -88,6 +117,10 @@ public class Ion {
 	
 	public int getCharge(){
 		return charge;
+	}
+	
+	public HashMap<Element, Integer> getElements(){
+		return (HashMap<Element, Integer>)elements;
 	}
 	
 	//default overrides

@@ -1,6 +1,9 @@
 package compound;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import element.Element;
 
 public class IonicCompound extends Compound {
 	private LinkedHashMap<Ion, Integer> ions;
@@ -24,18 +27,38 @@ public class IonicCompound extends Compound {
 		}
 		
 		//calculating name and symbol
-		name = cat.getName() + an.getName();
+		name = cat.getName() + " " + an.getName();
 		symbol = cat.getSymbol();
 		if(catAmount > 1){
-			symbol += catAmount + "";
+			symbol += "" + catAmount;
 		}
-		symbol += an.getSymbol();
 		if(anAmount > 1){
-			symbol += anAmount + "";
+			if(an.getElements().size() > 1){//make sure only polyatomic ions get the parentheses
+				symbol += "(" + an.getSymbol() + ")" + anAmount;
+			} else {
+				symbol += an.getSymbol() + anAmount;
+			}
+		} else {
+			symbol += an.getSymbol();
 		}
 	}
 	
 	private boolean isNeutral(){
 		return charge == 0;
+	}
+	
+	public HashMap<Element, Integer> getElements(){
+		HashMap<Element, Integer> elements = new HashMap<Element, Integer>();
+		for(Ion ion : ions.keySet()){
+			HashMap<Element, Integer> ionsElements = ion.getElements();
+			for(Element element : ionsElements.keySet()){
+				if(!elements.containsKey(element)){
+					elements.put(element, ionsElements.get(element));
+				} else {
+					elements.replace(element, new Integer(elements.get(element).intValue() + ionsElements.get(element).intValue()));
+				}
+			}
+		}
+		return elements;
 	}
 }
