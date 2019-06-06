@@ -11,7 +11,8 @@ import stoichiometry.Equation;
 
 public class PeriodicTable {
 	public static HashMap<String, Element> elements;
-	
+	public static HashMap<String, Ion> polyAtomicIons;
+		
 	static {
 		elements = new HashMap<String, Element>();
 		elements.put("H", new Element(1, 1.00794, "Hydrogen", new int[]{1}, "H", false, false));
@@ -132,44 +133,111 @@ public class PeriodicTable {
 		elements.put("Lv", new Element(116, 293.2, "Livermorium", new int[0], "Lv"));
 		elements.put("Ts", new Element(117, 293.21, "Tennessine", new int[0], "Ts"));
 		elements.put("Og", new Element(118, 294.21, "Oganesson", new int[0], "Og"));
+	
+		//common polyatomic ions
+		polyAtomicIons = new HashMap<String, Ion>();
+		polyAtomicIons.put("NH4", new Ion(get("N"), 1, get("H"), 4, "Ammonium", 1));
+		polyAtomicIons.put("SO4", new Ion(get("S"), 1, get("O"), 4, "Sulfate", -2));
+		LinkedHashMap<Element, Integer> HSO4 = new LinkedHashMap<Element, Integer>();
+		HSO4.put(get("H"), new Integer(1));
+		HSO4.put(get("S"), new Integer(1));
+		HSO4.put(get("O"), new Integer(4));
+		polyAtomicIons.put("HSO4", new Ion(HSO4, "Hydrogen sulfate", -1));
+		polyAtomicIons.put("SO3", new Ion(get("S"), 1, get("O"), 3, "Sulfite", -2));
+		polyAtomicIons.put("NO3", new Ion(get("N"), 1, get("O"), 3, "Nitrate", -1));
+		polyAtomicIons.put("NO2", new Ion(get("N"), 1, get("O"), 2, "Nitrite", -1));
+		polyAtomicIons.put("PO4", new Ion(get("P"), 1, get("O"), 4, "Phosphate", -3));
+		LinkedHashMap<Element, Integer> HPO4 = new LinkedHashMap<Element, Integer>();
+		HPO4.put(get("H"), new Integer(1));
+		HPO4.put(get("P"), new Integer(1));
+		HPO4.put(get("O"), new Integer(4));
+		polyAtomicIons.put("HPO4", new Ion(HPO4, "Dihydrogen Phosphate", -2));
+		polyAtomicIons.put("PO3", new Ion(get("P"), 1, get("O"), 3, "Phosphite", -3));
+		polyAtomicIons.put("OH", new Ion(get("O"), 1, get("H"), 1, "Hydroxide", -1));
+		//skipped peroxide, that is weird
+		LinkedHashMap<Element, Integer> C2H3O2 = new LinkedHashMap<Element, Integer>();
+		C2H3O2.put(get("C"), new Integer(2));
+		C2H3O2.put(get("H"), new Integer(3));
+		C2H3O2.put(get("O"), new Integer(2));
+		polyAtomicIons.put("C2H3O2", new Ion(C2H3O2, "Acetate", -1));
+		polyAtomicIons.put("ClO4", new Ion(get("Cl"), 1, get("O"), 4, "Perchlorate", -1));
+		polyAtomicIons.put("ClO3", new Ion(get("Cl"), 1, get("O"), 3, "Chlorate", -1));
+		polyAtomicIons.put("ClO2", new Ion(get("Cl"), 1, get("O"), 2, "Clorite", -1));
+		polyAtomicIons.put("ClO", new Ion(get("Cl"), 1, get("O"), 1, "Hypochlorite", -1));
+		polyAtomicIons.put("CrO4", new Ion(get("Cr"), 1, get("O"), 4, "Chromate", -2));
+		polyAtomicIons.put("Cr2O7", new Ion(get("Cr"), 2, get("O"), 7, "Dichromate", -2));
+		polyAtomicIons.put("MnO4", new Ion(get("Mn"), 1, get("O"), 4, "Permanganate", -1));
+		polyAtomicIons.put("CN", new Ion(get("C"), 1, get("N"), 1, "Cyanide", -1));
+		LinkedHashMap<Element, Integer> CNO = new LinkedHashMap<Element, Integer>();
+		CNO.put(get("C"), new Integer(1));
+		CNO.put(get("N"), new Integer(1));
+		CNO.put(get("O"), new Integer(1));
+		polyAtomicIons.put("CNO", new Ion(CNO, "Cyanate", -1));
+		LinkedHashMap<Element, Integer> SCN = new LinkedHashMap<Element, Integer>();
+		CNO.put(get("S"), new Integer(1));
+		CNO.put(get("C"), new Integer(1));
+		CNO.put(get("N"), new Integer(1));
+		polyAtomicIons.put("SCN", new Ion(SCN, "Thiocyanate", -1));
+		polyAtomicIons.put("CO3", new Ion(get("C"), 1, get("O"), 3, "Carbonate", -2));
+		LinkedHashMap<Element, Integer> HCO3 = new LinkedHashMap<Element, Integer>();
+		HCO3.put(get("H"), new Integer(1));
+		HCO3.put(get("C"), new Integer(1));
+		HCO3.put(get("O"), new Integer(3));
+		polyAtomicIons.put("HCO3", new Ion(HCO3, "Hydrogen Carbonate", -1));
+		polyAtomicIons.put("C2O4", new Ion(get("C"), 2, get("O"), 4, "Oxalate", -2));
+		polyAtomicIons.put("S2O3", new Ion(get("S"), 2, get("O"), 3, "Thiosulfate", -2));
 	}
 	
 	public static Element get(String elementName){
-		return elements.get(elementName);
+		if(elements.containsKey(elementName)){
+			return elements.get(elementName);
+		} else {
+			return null;
+		}
+	}
+	
+	public static Ion getIon(String ionName){
+		if(polyAtomicIons.containsKey(ionName)){
+			return polyAtomicIons.get(ionName);
+		} else {
+			return null;
+		}
 	}
 	
 	public static void main(String[] args){
 		//test elements
-		System.out.println(PeriodicTable.get("H").getName());
-		System.out.println(PeriodicTable.get("Pb"));
-		System.out.println(PeriodicTable.get("Mc").getAtomicNum());
-		System.out.println(PeriodicTable.get("N").getFormalCharge());
+		System.out.println(get("H").getName());
+		System.out.println(get("Pb"));
+		System.out.println(get("Mc").getAtomicNum());
+		System.out.println(get("N").getFormalCharge());
 		//test covalent compounds
-		CovalentCompound water = new CovalentCompound(PeriodicTable.get("H"), 2, PeriodicTable.get("O"), 1);
+		CovalentCompound water = new CovalentCompound(get("H"), 2, get("O"), 1);
 		System.out.println(water.getSymbol());
 		System.out.println(water.getName());
-		CovalentCompound XeF4 = new CovalentCompound(PeriodicTable.get("Xe"), 1, PeriodicTable.get("F"), 4);
-		//test ions
+		CovalentCompound XeF4 = new CovalentCompound(get("Xe"), 1, get("F"), 4);
 		System.out.println(XeF4.getAtomicWeight());
+		//test ions
 		LinkedHashMap<Element, Integer> nitrateVals = new LinkedHashMap<Element, Integer>();
-		nitrateVals.put(PeriodicTable.get("N"), 1);
-		nitrateVals.put(PeriodicTable.get("O"), 3);
+		nitrateVals.put(get("N"), 1);
+		nitrateVals.put(get("O"), 3);
 		Ion nitrate = new Ion(nitrateVals, "nitrate", -1);
 		System.out.println(nitrate.getSymbol());
 		//test ionic compounds
-		Ion iron3 = new Ion(PeriodicTable.get("Fe"), 3);
-		Ion oMinusTwo = new Ion(PeriodicTable.get("O"));
+		Ion iron3 = new Ion(get("Fe"), 3);
+		Ion oMinusTwo = new Ion(get("O"));
 		IonicCompound Fe2O3 = new IonicCompound(iron3, 2, oMinusTwo, 3);
 		System.out.println(Fe2O3);
 		System.out.println(Fe2O3.getName());
+		IonicCompound NH42CO3 = new IonicCompound(new Ion(get("N"), 1, get("H"), 4, "Ammonium", 1), 2, new Ion(get("O"), 1, get("H"), 1, "Carbonate", -2), 1);
+		System.out.println(NH42CO3);
 		//test equation
-		Compound BF3 = new CovalentCompound(PeriodicTable.get("B"), 1, PeriodicTable.get("F"), 3);
+		Compound BF3 = new CovalentCompound(get("B"), 1, get("F"), 3);
 		HashMap<Compound, Integer> reactants = new HashMap<Compound, Integer>();
 		reactants.put(BF3, 4);
 		reactants.put(water, 3);
-		Ion H = new Ion(PeriodicTable.get("H"));
-		Ion BF4 = new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("F"), 4, "Tetrafluoroborate", -1);
-		Compound H3BO3 = new IonicCompound(H, 3, new Ion(PeriodicTable.get("B"), 1, PeriodicTable.get("O"), 3, "Borate", -3), 1);
+		Ion H = new Ion(get("H"));
+		Ion BF4 = new Ion(get("B"), 1, get("F"), 4, "Tetrafluoroborate", -1);
+		Compound H3BO3 = new IonicCompound(H, 3, new Ion(get("B"), 1, get("O"), 3, "Borate", -3), 1);
 		System.out.println(H3BO3.getElements().toString());
 		Compound HBF4 = new IonicCompound(H, 1, BF4, 1);
 		HashMap<Compound, Integer> products = new HashMap<Compound, Integer>();

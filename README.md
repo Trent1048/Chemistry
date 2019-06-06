@@ -2,7 +2,7 @@
 ## Elements
 All elements are stored in the ``PeriodicTable`` class and can be accessed using the ``get(String elementName)`` method that returns an ``Element`` object.
 ## Ions
-Ions are used for creating [ionic compounds](###Ionic-Compounds). There are three ways to create an ion.
+Ions are used for creating ionic compounds. There are three ways to create an ion.
 1. To create a non-metal, monotomic ion, use ``Ion(Element element)``
 2. To create a metal, monotomic ion, use ``Ion(Element element, int charge)``
 3. To create a polyatomic ion, use ``Ion(LinkedHashMap<Element, Integer> ionsElements, String name, int charge)`` by first creating a ``LinkedHashMap<Element, Integer>`` and adding the elements to it ***in order*** and then calling the constructor

@@ -29,6 +29,6 @@ public abstract class Compound {
 	}
 	
 	public boolean equals(Compound other){
-		return name == other.getName();
+		return name == other.getName() && atomicWeight == other.getAtomicWeight() && symbol == other.getSymbol();
 	}
 }

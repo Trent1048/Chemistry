@@ -45,7 +45,7 @@ public class Ion {
 			symbol = element.getSymbol();
 			name = element.getIonName();
 			if(!element.hasOneCharge()){
-				name += " (" + ROMAN_NUMERALS[charge - 1] + ") ";
+				name += " (" + ROMAN_NUMERALS[charge - 1] + ")";
 			}
 			if(element.hasCharge(charge)){
 				this.charge = charge;

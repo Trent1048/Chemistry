@@ -28,9 +28,15 @@ public class IonicCompound extends Compound {
 		
 		//calculating name and symbol
 		name = cat.getName() + " " + an.getName();
-		symbol = cat.getSymbol();
+		symbol = "";
 		if(catAmount > 1){
-			symbol += "" + catAmount;
+			if(cat.getElements().size() > 1){//make sure only polyatomic ions get the parentheses
+				symbol += "(" + cat.getSymbol() + ")" + catAmount;
+			} else {
+				symbol += cat.getSymbol() + catAmount;
+			}
+		} else {
+			symbol += cat.getSymbol();
 		}
 		if(anAmount > 1){
 			if(an.getElements().size() > 1){//make sure only polyatomic ions get the parentheses

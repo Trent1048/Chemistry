@@ -144,6 +144,6 @@ public class Element {
 	}
 	
 	public boolean equals(Element other){
-		return other.getName() == name;
+		return other.getName() == name && other.getSymbol() == symbol && other.getAtomicNum() == atomicNum;
 	}
 }
