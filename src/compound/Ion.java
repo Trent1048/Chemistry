@@ -8,7 +8,7 @@ import element.Element;
 public class Ion {
 	private static final String[] ROMAN_NUMERALS = {"I", "II", "III", "IV", "V", "VI", "VII"};
 	private LinkedHashMap<Element, Integer> elements;
-	private double atomicWeight;
+	private double atomicMass;
 	private String name;
 	private String symbol;
 	private int charge;
@@ -23,7 +23,7 @@ public class Ion {
 			if(element.getSymbol().equals("H")){
 				name = element.getName();
 			}
-			atomicWeight = element.getAtomicWeight();
+			atomicMass = element.getAtomicMass();
 			//calculating the charge
 			if(element.hasFormalCharge()){
 				charge = element.getFormalCharge();
@@ -71,7 +71,7 @@ public class Ion {
 		this.charge = charge;
 		
 		//calculating atomic weight and symbol
-		atomicWeight = e1.getAtomicWeight() * e1Amount + e2.getAtomicWeight() * e2Amount;
+		atomicMass = e1.getAtomicMass() * e1Amount + e2.getAtomicMass() * e2Amount;
 		symbol = "";
 		symbol += e1.getSymbol();
 		if(e1Amount > 1){
@@ -90,11 +90,11 @@ public class Ion {
 		this.charge = charge;
 		
 		//calculating atomic weight and symbol
-		atomicWeight = 0;
+		atomicMass = 0;
 		symbol = "";
 		for(Element element : elements.keySet()){
 			int amount = elements.get(element).intValue();
-			atomicWeight += element.getAtomicWeight() * amount;
+			atomicMass += element.getAtomicMass() * amount;
 			symbol += element.getSymbol();
 			if(amount > 1){
 				symbol += "" + amount;
@@ -104,7 +104,7 @@ public class Ion {
 	
 	//getters	
 	public double getAtomicWeight(){
-		return atomicWeight;
+		return atomicMass;
 	}
 	
 	public String getName(){

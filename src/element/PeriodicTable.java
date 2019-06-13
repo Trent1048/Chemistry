@@ -2,7 +2,6 @@ package element;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-
 import compound.Compound;
 import compound.CovalentCompound;
 import compound.Ion;
@@ -215,7 +214,7 @@ public class PeriodicTable {
 		System.out.println(water.getSymbol());
 		System.out.println(water.getName());
 		CovalentCompound XeF4 = new CovalentCompound(get("Xe"), 1, get("F"), 4);
-		System.out.println(XeF4.getAtomicWeight());
+		System.out.println(XeF4.getAtomicMass());
 		//test ions
 		LinkedHashMap<Element, Integer> nitrateVals = new LinkedHashMap<Element, Integer>();
 		nitrateVals.put(get("N"), 1);
@@ -247,5 +246,14 @@ public class PeriodicTable {
 		System.out.println(H3BO3.getName());
 		Equation testE = new Equation(reactants, products);
 		System.out.println(testE);
+		HashMap<Compound, Integer> react = new HashMap<Compound, Integer>();
+		react.put(new CovalentCompound(get("H")), new Integer(4));
+		react.put(new CovalentCompound(get("C")), new Integer(1));
+		HashMap<Compound, Integer> prod = new HashMap<Compound, Integer>();
+		prod.put(new CovalentCompound(get("C"), 1, get("H"), 4), 2);
+		Equation testE2 = new Equation(react, prod);
+		System.out.println(testE2.toString());
+		//test solving
+		System.out.println(testE2.solve("C2", 50, false, "CH4", false));
 	}
 }

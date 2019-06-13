@@ -18,7 +18,7 @@ public class CovalentCompound extends Compound {
 		elements.put(e1, new Integer(e1Amount));
 		elements.put(e2, new Integer(e2Amount));
 		
-		atomicWeight = e1.getAtomicWeight() * e1Amount + e2.getAtomicWeight() * e2Amount;
+		atomicMass = e1.getAtomicMass() * e1Amount + e2.getAtomicMass() * e2Amount;
 		
 		//generating symbol
 		symbol = "";
@@ -43,6 +43,28 @@ public class CovalentCompound extends Compound {
 			name = name.substring(0, oIndex) + name.substring(oIndex + 1);
 		}
 		name = name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
+	
+	//for things like O2 or N2 (diatomic elements)
+	public CovalentCompound(Element diatomic){
+		if(diatomic.isMetal()){
+			throw new IllegalArgumentException("Element must be a nonmetal");
+		}
+		String[] diatomics = {"H", "O", "N", "F", "Cl", "Br", "I", "C"};
+		boolean isDiatomic = false;
+		for(String element : diatomics){
+			if(element.equals(diatomic.getSymbol())){
+				isDiatomic = true;
+			}
+		}
+		if(!isDiatomic){
+			throw new IllegalArgumentException("Element must be a diatomic");
+		}
+		elements = new HashMap<Element, Integer>();
+		elements.put(diatomic, new Integer(2));
+		symbol = diatomic.getSymbol() + 2;
+		name = diatomic.getName();
+		atomicMass = diatomic.getAtomicMass() * 2;
 	}
 	
 	public HashMap<Element, Integer> getElements(){

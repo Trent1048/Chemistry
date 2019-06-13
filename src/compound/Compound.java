@@ -6,7 +6,7 @@ import element.Element;
 public abstract class Compound {
 	protected String name;
 	protected String symbol;
-	protected double atomicWeight;
+	protected double atomicMass;
 	
 	//getters
 	public String getName(){
@@ -17,8 +17,8 @@ public abstract class Compound {
 		return symbol;
 	}
 	
-	public double getAtomicWeight(){
-		return atomicWeight;
+	public double getAtomicMass(){
+		return atomicMass;
 	}
 	
 	public abstract HashMap<Element, Integer> getElements();
@@ -29,6 +29,6 @@ public abstract class Compound {
 	}
 	
 	public boolean equals(Compound other){
-		return name == other.getName() && atomicWeight == other.getAtomicWeight() && symbol == other.getSymbol();
+		return name == other.getName() && atomicMass == other.getAtomicMass() && symbol == other.getSymbol();
 	}
 }

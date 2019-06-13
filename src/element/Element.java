@@ -2,7 +2,7 @@ package element;
 
 public class Element {
 	private int atomicNum;
-	private double atomicWeight;
+	private double atomicMass;
 	private String name;
 	private int[] charges;
 	private String symbol;
@@ -14,9 +14,9 @@ public class Element {
 	private int formalCharge;
 	private boolean hasFormalCharge;
 	
-	public Element(int atomicNum, double atomicWeight, String name, int[] charges, String symbol){
+	public Element(int atomicNum, double atomicMass, String name, int[] charges, String symbol){
 		this.atomicNum = atomicNum;
-		this.atomicWeight = atomicWeight;
+		this.atomicMass = atomicMass;
 		this.name = name;
 		this.charges = charges;
 		this.symbol = symbol;
@@ -30,9 +30,9 @@ public class Element {
 		generateIonName();
 	}
 	
-	public Element(int atomicNum, double atomicWeight, String name, int[] charges, String symbol, boolean isMetal, boolean isMetalloid){
+	public Element(int atomicNum, double atomicMass, String name, int[] charges, String symbol, boolean isMetal, boolean isMetalloid){
 		this.atomicNum = atomicNum;
-		this.atomicWeight = atomicWeight;
+		this.atomicMass = atomicMass;
 		this.name = name;
 		this.charges = charges;
 		this.symbol = symbol;
@@ -42,9 +42,9 @@ public class Element {
 		generateIonName();
 	}
 	
-	public Element(int atomicNum, double atomicWeight, String name, int[] charges, int formalCharge, String symbol){
+	public Element(int atomicNum, double atomicMass, String name, int[] charges, int formalCharge, String symbol){
 		this.atomicNum = atomicNum;
-		this.atomicWeight = atomicWeight;
+		this.atomicMass = atomicMass;
 		this.name = name;
 		this.charges = charges;
 		this.symbol = symbol;
@@ -81,8 +81,8 @@ public class Element {
 		return atomicNum;
 	}
 	
-	public double getAtomicWeight(){
-		return atomicWeight;
+	public double getAtomicMass(){
+		return atomicMass;
 	}
 	
 	public String getName(){
