@@ -6,6 +6,7 @@ import compound.Compound;
 import compound.CovalentCompound;
 import compound.Ion;
 import compound.IonicCompound;
+import compound.Metal;
 import stoichiometry.Equation;
 
 public class PeriodicTable {
@@ -259,5 +260,22 @@ public class PeriodicTable {
 		testE2ReactantsAmounts.put("C2", new Double(50));
 		testE2ReactantsAmounts.put("H2", new Double(500));
 		System.out.println(testE2.solveLR(testE2ReactantsAmounts, false, "CH4", false));
+		//test Metal
+		HashMap<Compound, Integer> lrReactants = new HashMap<Compound, Integer>();
+		Compound Zn = new Metal(get("Zn"), 2);
+		Compound FeNO33 = new IonicCompound(new Ion(get("Fe"), 3), 1, getIon("NO3"), 3);
+		lrReactants.put(Zn, 3);
+		lrReactants.put(FeNO33, 2);
+		HashMap<Compound, Integer> lrProducts = new HashMap<Compound, Integer>();
+		Compound Fe = new Metal(get("Fe"), 3);
+		Compound ZnNO32 = new IonicCompound(new Ion(get("Zn"), 2), 1, getIon("NO3"), 2);
+		lrProducts.put(Fe, 2);
+		lrProducts.put(ZnNO32, 3);
+		Equation lrEquationTest = new Equation(lrReactants, lrProducts);
+		System.out.println(lrEquationTest);
+		HashMap<String, Double> lrEquationTestAmounts = new HashMap<String, Double>();
+		lrEquationTestAmounts.put("Zn", new Double(15.5));
+		lrEquationTestAmounts.put("Fe(NO3)3", new Double(50.5));
+		System.out.println(lrEquationTest.solveLR(lrEquationTestAmounts, false, "Fe", false));
 	}
 }

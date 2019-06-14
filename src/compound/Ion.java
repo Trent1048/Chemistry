@@ -103,7 +103,7 @@ public class Ion {
 	}
 	
 	//getters	
-	public double getAtomicWeight(){
+	public double getAtomicMass(){
 		return atomicMass;
 	}
 	
