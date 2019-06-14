@@ -255,5 +255,9 @@ public class PeriodicTable {
 		System.out.println(testE2.toString());
 		//test solving
 		System.out.println(testE2.solve("C2", 50, false, "CH4", false));
+		HashMap<String, Double> testE2ReactantsAmounts = new HashMap<String, Double>();
+		testE2ReactantsAmounts.put("C2", new Double(50));
+		testE2ReactantsAmounts.put("H2", new Double(500));
+		System.out.println(testE2.solveLR(testE2ReactantsAmounts, false, "CH4", false));
 	}
 }

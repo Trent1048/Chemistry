@@ -118,11 +118,59 @@ public class Equation {
 			knownMols = convertToMols(kC, amountOfCompound);
 		}
 		
-		double molsOfUnknown = knownMols * (equation.get(uC) / equation.get(kC));
+		double molsOfUnknown = knownMols * ((double)equation.get(uC) / (double)equation.get(kC));
 		if(!solveForMols){
 			return convertToGrams(uC, molsOfUnknown);
 		}
 		return molsOfUnknown;
+	}
+
+	/* same as normal solve except it takes in a HashMap<String, Double> of the reactants as strings
+	 * and the corresponding amount of mols/grams */
+	public double solveLR(HashMap<String, Double> reactantsWithAmounts, boolean isInMols, String unknownCompound, boolean solveForMols){
+		int numOfCompounds = reactantsWithAmounts.size();
+		String[] compoundsInE = new String[numOfCompounds];
+		double[] mols = new double[numOfCompounds];
+		
+		int compoundNum = 0;
+		for (String c : reactantsWithAmounts.keySet()) {
+			Compound compound = getCompound(c);
+			if(compound == null){
+				throw new IllegalArgumentException("Compound " + c +" could not found in the equation");
+			}
+			double amount = reactantsWithAmounts.get(c).doubleValue();
+			
+			compoundsInE[compoundNum] = c;
+			mols[compoundNum] = amount;
+			
+			if(!isInMols){
+				mols[compoundNum] = convertToMols(compound, amount);
+			}
+			compoundNum++;
+		}
+				
+		String lr = compoundsInE[0];
+		double lrAmount = mols[0];
+		
+		/* solves all the compounds for every other compound and if that number is more than the amount there is, 
+		 * that compound is the lr. returns solve for the unknown compound using the lr */
+		for(int c = 0; c < numOfCompounds; c++){
+			for(int cBefore = 0; cBefore < c; cBefore++){
+				double solved = solve(compoundsInE[c], mols[c], true, compoundsInE[cBefore], true);
+				if(solved > mols[cBefore]){
+					lr = compoundsInE[cBefore];
+					lrAmount = mols[cBefore];
+				}
+			}
+			for(int cAfter = c + 1; cAfter < numOfCompounds; cAfter++){
+				double solved = solve(compoundsInE[c], mols[c], true, compoundsInE[cAfter], true);
+				if(solved > mols[cAfter]){
+					lr = compoundsInE[cAfter];
+					lrAmount = mols[cAfter];
+				}
+			}
+		}
+		return solve(lr, lrAmount, true, unknownCompound, solveForMols);
 	}
 	
 	//getters
