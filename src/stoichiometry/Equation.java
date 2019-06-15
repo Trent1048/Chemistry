@@ -10,6 +10,7 @@ public class Equation {
 	private HashMap<Compound, Integer> equation;
 	private String equationAsString;
 	private HashMap<String, Compound> compounds;
+	private Compound[] compoundsArr;
 	
 	public Equation(HashMap<Compound, Integer> reactants, HashMap<Compound, Integer> products){
 		this.reactants = reactants;
@@ -19,6 +20,12 @@ public class Equation {
 		equation.putAll(products);
 		if(!isBalanced()){
 			throw new IllegalArgumentException("Equasion is not balanced");
+		}
+		compoundsArr = new Compound[equation.size()];
+		int comp = 0;
+		for(Compound compound : equation.keySet()){
+			compoundsArr[comp] = compound;
+			comp++;
 		}
 		calcString();		
 	}
@@ -184,6 +191,10 @@ public class Equation {
 	
 	public Compound getCompound(String compound){
 		return compounds.get(compound);
+	}
+	
+	public Compound[] getCompounds(){
+		return compoundsArr;
 	}
 	
 	public String toString(){
