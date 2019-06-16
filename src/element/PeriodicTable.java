@@ -8,6 +8,7 @@ import compound.Ion;
 import compound.IonicCompound;
 import compound.Metal;
 import stoichiometry.Equation;
+import stoichiometry.Gas;
 
 public class PeriodicTable {
 	public static HashMap<String, Element> elements;
@@ -277,5 +278,9 @@ public class PeriodicTable {
 		lrEquationTestAmounts.put("Zn", new Double(15.5));
 		lrEquationTestAmounts.put("Fe(NO3)3", new Double(50.5));
 		System.out.println(lrEquationTest.solveLR(lrEquationTestAmounts, false, "Fe", false));
+		//test gas stoic
+		System.out.println(Gas.idealGasLaw(1.12, -1, 0.75, Gas.R_ATM, 298));
+		System.out.println(Gas.combinedGasLaw(200, 50, 544, 100, -1, 259));
+		
 	}
 }
