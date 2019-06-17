@@ -9,6 +9,7 @@ import compound.IonicCompound;
 import compound.Metal;
 import stoichiometry.Equation;
 import stoichiometry.Gas;
+import stoichiometry.Thermodynamics;
 
 public class PeriodicTable {
 	public static HashMap<String, Element> elements;
@@ -281,6 +282,8 @@ public class PeriodicTable {
 		//test gas stoic
 		System.out.println(Gas.idealGasLaw(1.12, -1, 0.75, Gas.R_ATM, 298));
 		System.out.println(Gas.combinedGasLaw(200, 50, 544, 100, -1, 259));
+		//test thermo stoic
+		System.out.println(Thermodynamics.calcEnergy(435, -1, 3.4, 64));
 		
 	}
 }
