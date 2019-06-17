@@ -189,6 +189,10 @@ public class Equation {
 		return products;
 	}
 	
+	public HashMap<Compound, Integer> getEquation(){
+		return equation;
+	}
+	
 	public Compound getCompound(String compound){
 		return compounds.get(compound);
 	}
